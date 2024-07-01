@@ -63,7 +63,11 @@ public class CustomerServiceImpl implements CustomerService {
 			return null;
 		}
 		for(Driver driver:driverList) {
-			Cab cab = cabRepository2.findByDriver(driver);
+			Optional<Cab> optionCab = cabRepository2.findById(customerId);
+			if(optionCab.isEmpty()) {
+				return null;
+			}
+			Cab cab = optionCab.get();
 			if(cab.getAvailable()) {
 				cab.setAvailable(false);
 				cabRepository2.save(cab);
