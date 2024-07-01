@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class TripBooking{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer tripbookingId;
 	
 	private String fromLocation;

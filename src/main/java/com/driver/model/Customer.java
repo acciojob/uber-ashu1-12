@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 public class Customer{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int customerId;
 	
 	@Column(nullable = false)

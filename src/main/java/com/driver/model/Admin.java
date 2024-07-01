@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Admin{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int adminId;
 	
 	@Column(nullable = false, unique = true)
