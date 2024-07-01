@@ -18,10 +18,11 @@ public class Driver{
 	
 	
 	@Column(nullable = false, unique = true)
-	private String mobileNo;
+	private String mobile;
 	
 	@Column(nullable = false)
 	private String password;
+	
 	
 	@OneToOne(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
 	Cab cab;
@@ -34,7 +35,7 @@ public class Driver{
 
 	public Driver(String mobileNo, String password) {
 		super();
-		this.mobileNo = mobileNo;
+		this.mobile = mobileNo;
 		this.password = password;
 	}
 
@@ -49,13 +50,13 @@ public class Driver{
 	}
 
 
-	public String getMobileNo() {
-		return mobileNo;
+	public String getMobile() {
+		return mobile;
 	}
 
 
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
+	public void setMobile(String mobileNo) {
+		this.mobile = mobileNo;
 	}
 
 
@@ -81,8 +82,11 @@ public class Driver{
 
 	@Override
 	public String toString() {
-		return "Driver [id=" + id + ", mobileNo=" + mobileNo + ", password=" + password + ", cab=" + cab + "]";
+		return "Driver [id=" + id + ", mobile=" + mobile + ", password=" + password + "]";
 	}
+
+
+	
 	
 	
 }

@@ -24,7 +24,7 @@ public class Cab{
 //	private String cabType;
 	
 	@Column(nullable = false)
-	private double farePerKm;
+	private double PerKmRate;
 	
 	
 	@Column(nullable = false)
@@ -46,7 +46,7 @@ public class Cab{
 		
 //		this.cabNumber = cabNumber;
 //		this.cabType = cabType;
-		this.farePerKm = farePerKm;
+		this.PerKmRate = farePerKm;
 		this.isAvailable = isAvailable;
 	}
 
@@ -60,12 +60,12 @@ public class Cab{
 
 	
 
-	public double getFarePerKm() {
-		return farePerKm;
+	public double getPerKmRate() {
+		return PerKmRate;
 	}
 
-	public void setFarePerKm(double farePerKm) {
-		this.farePerKm = farePerKm;
+	public void setPerKmRate(double farePerKm) {
+		this.PerKmRate = farePerKm;
 	}
 
 	public boolean isAvailable() {
@@ -98,7 +98,7 @@ public class Cab{
 
 	@Override
 	public String toString() {
-		return "Cab [id=" + id + ",farePerKm=" + farePerKm
+		return "Cab [id=" + id + ",PerKmRatea=" + PerKmRate
 				+ ", isAvailable=" + isAvailable + "]";
 	}
 

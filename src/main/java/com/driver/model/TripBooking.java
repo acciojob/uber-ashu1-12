@@ -24,16 +24,16 @@ public class TripBooking{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer tripbookingId;
 	
-	private String pickUp;
+	private String fromLocation;
 	
-	private String destination;
+	private String toLocation;
 	
 	@Enumerated(EnumType.STRING)
 	private TripStatus tripStatus;
 	
-	private int toatDistance;
+	private int distanceInKm;
 	
-	private double totalFare;
+	private double bill;
 	
 	@CreationTimestamp
 	private Date bookedDate;
@@ -56,55 +56,48 @@ public class TripBooking{
 	}
 
 
-	public TripBooking(String pickUp, String destination,
-			int toatDistance) {
-		
-		
-		this.pickUp = pickUp;
-		this.destination = destination;
-		this.toatDistance = toatDistance;
+	
+
+	public TripBooking(String fromLocation, String toLocation, int distanceInKm) {
+		super();
+		this.fromLocation = fromLocation;
+		this.toLocation = toLocation;
+		this.distanceInKm = distanceInKm;
 	}
-
-
-//	public int getId() {
-//		return id;
-//	}
-//
-//
-//	public void setId(int id) {
-//		this.id = id;
-//	}
 
 
 	public int getTripBookingId() {
 		return tripbookingId;
 	}
 
-
-	public void setTripBookingId(int tripbookingId) {
-		this.tripbookingId = tripbookingId;
+	public String getFromLocation() {
+		return fromLocation;
 	}
 
 
-	public String getPickUp() {
-		return pickUp;
+	public void setFromLocation(String fromLocation) {
+		this.fromLocation = fromLocation;
 	}
 
 
-	public void setPickUp(String pickUp) {
-		this.pickUp = pickUp;
+	public String getToLocation() {
+		return toLocation;
 	}
 
 
-	public String getDestination() {
-		return destination;
+	public void setToLocation(String toLocation) {
+		this.toLocation = toLocation;
 	}
 
 
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public int getDistanceInKm() {
+		return distanceInKm;
 	}
 
+
+	public void setDistanceInKm(int distanceInKm) {
+		this.distanceInKm = distanceInKm;
+	}
 
 	public TripStatus getTripStatus() {
 		return tripStatus;
@@ -116,24 +109,18 @@ public class TripBooking{
 	}
 
 
-	public double getToatDistance() {
-		return toatDistance;
+	public double getBill() {
+		return bill;
 	}
 
 
-	public void setToatDistance(int toatDistance) {
-		this.toatDistance = toatDistance;
+
+
+	public void setBill(double bill) {
+		this.bill = bill;
 	}
 
 
-	public double getTotalFare() {
-		return totalFare;
-	}
-
-
-	public void setTotalFare(double totalFare) {
-		this.totalFare = totalFare;
-	}
 
 
 	public Date getBookedDate() {
@@ -163,6 +150,16 @@ public class TripBooking{
 
 	public void setCab(Cab cab) {
 		this.cab = cab;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "TripBooking [tripbookingId=" + tripbookingId + ", fromLocation=" + fromLocation + ", toLocation="
+				+ toLocation + ", tripStatus=" + tripStatus + ", distanceInKm=" + distanceInKm + ", bill=" + bill
+				+ ", bookedDate=" + bookedDate + ", customer=" + customer + ", cab=" + cab + "]";
 	}
 	
 	

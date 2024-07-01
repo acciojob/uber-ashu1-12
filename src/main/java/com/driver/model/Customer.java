@@ -21,6 +21,12 @@ public class Customer{
 	@Column(nullable = false)
 	private String name;
 	
+	@Column(nullable = false, unique = true)
+	private String mobile;
+	
+	@Column(nullable = false)
+	private String password;
+	
 	private int age;
 	
 	@Column(nullable = false, unique = true)
@@ -35,13 +41,19 @@ public class Customer{
 		
 	}
 
-	public Customer(String name, int age, String emailId, String gender) {
+	
+
+	public Customer(String name, String mobile, String password, int age, String emailId, String gender) {
 		super();
 		this.name = name;
+		this.mobile = mobile;
+		this.password = password;
 		this.age = age;
 		this.emailId = emailId;
 		this.gender = gender;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -84,6 +96,30 @@ public class Customer{
 	}
 	
 
+	public String getMobile() {
+		return mobile;
+	}
+
+
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
 	public List<TripBooking> getBookings() {
 		return bookings;
 	}
@@ -92,11 +128,15 @@ public class Customer{
 		this.bookings = bookings;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", age=" + age + ", emailId=" + emailId + ", gender=" + gender
-				+ "]";
+		return "Customer [name=" + name + ", mobile=" + mobile + ", password=" + password + ", age=" + age
+				+ ", emailId=" + emailId + ", gender=" + gender + "]";
 	}
+
+	
 	
 	
 	
