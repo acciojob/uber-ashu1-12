@@ -13,7 +13,7 @@ public class Driver{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int driverId;
 	
 	
 	
@@ -40,13 +40,13 @@ public class Driver{
 	}
 
 
-	public int getId() {
-		return id;
+	public int getDriverId() {
+		return driverId;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDriverId(int id) {
+		this.driverId = id;
 	}
 
 
@@ -82,7 +82,7 @@ public class Driver{
 
 	@Override
 	public String toString() {
-		return "Driver [id=" + id + ", mobile=" + mobile + ", password=" + password + "]";
+		return "Driver [id=" + driverId + ", mobile=" + mobile + ", password=" + password + "]";
 	}
 
 

@@ -29,7 +29,7 @@ public class TripBooking{
 	private String toLocation;
 	
 	@Enumerated(EnumType.STRING)
-	private TripStatus tripStatus;
+	private TripStatus status;
 	
 	private int distanceInKm;
 	
@@ -38,7 +38,10 @@ public class TripBooking{
 	@CreationTimestamp
 	private Date bookedDate;
 	
-	//Driver driver;
+	@OneToOne
+	@JoinColumn
+	@JsonIgnore
+	Driver driver;
 	
 	@ManyToOne
 	@JoinColumn
@@ -49,6 +52,8 @@ public class TripBooking{
 	@JoinColumn
 	@JsonIgnore
 	Cab cab;
+	
+	
 
 	
 	public TripBooking() {
@@ -68,6 +73,9 @@ public class TripBooking{
 
 	public int getTripBookingId() {
 		return tripbookingId;
+	}
+	public void setTripBookingId(int bookingId) {
+		this.tripbookingId= bookingId;
 	}
 
 	public String getFromLocation() {
@@ -99,13 +107,13 @@ public class TripBooking{
 		this.distanceInKm = distanceInKm;
 	}
 
-	public TripStatus getTripStatus() {
-		return tripStatus;
+	public TripStatus getStatus() {
+		return status;
 	}
 
 
-	public void setTripStatus(TripStatus tripStatus) {
-		this.tripStatus = tripStatus;
+	public void setStatus(TripStatus tripStatus) {
+		this.status = tripStatus;
 	}
 
 
@@ -131,6 +139,20 @@ public class TripBooking{
 	public void setBookedDate(Date bookedDate) {
 		this.bookedDate = bookedDate;
 	}
+
+	
+	public Driver getDriver() {
+		return driver;
+	}
+
+
+
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+
+
 
 
 	public Customer getCustomer() {
@@ -158,7 +180,7 @@ public class TripBooking{
 	@Override
 	public String toString() {
 		return "TripBooking [tripbookingId=" + tripbookingId + ", fromLocation=" + fromLocation + ", toLocation="
-				+ toLocation + ", tripStatus=" + tripStatus + ", distanceInKm=" + distanceInKm + ", bill=" + bill
+				+ toLocation + ", tripStatus=" + status + ", distanceInKm=" + distanceInKm + ", bill=" + bill
 				+ ", bookedDate=" + bookedDate + ", customer=" + customer + ", cab=" + cab + "]";
 	}
 	

@@ -68,7 +68,7 @@ public class Cab{
 		this.PerKmRate = farePerKm;
 	}
 
-	public boolean isAvailable() {
+	public boolean getAvailable() {
 		return isAvailable;
 	}
 

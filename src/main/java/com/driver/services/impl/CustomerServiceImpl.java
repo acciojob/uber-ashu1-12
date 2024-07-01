@@ -54,16 +54,16 @@ public class CustomerServiceImpl implements CustomerService {
 		//Avoid using SQL query
 		
 		List<Driver> driverList=driverRepository2.findAll();
-		driverList.sort(Comparator.comparing(Driver::getId));
+		driverList.sort(Comparator.comparing(Driver::getDriverId));
 		Customer customer = customerRepository2.getOne(customerId);
 		
 		for(Driver driver:driverList) {
 			Cab cab = cabRepository2.findByDriver(driver);
-			if(cab.isAvailable()) {
+			if(cab.getAvailable()) {
 				cab.setAvailable(false);
 				cabRepository2.save(cab);
 				TripBooking trip = new TripBooking(fromLocation, toLocation,distanceInKm);
-				trip.setTripStatus(TripStatus.CONFIRMED);
+				trip.setStatus(TripStatus.CONFIRMED);
 				trip.setCustomer(customer);
 				trip.setCab(cab);
 				trip.setBill(cab.getPerKmRate()*trip.getDistanceInKm());
@@ -88,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
 		TripBooking bookedTrip = tripBookingRepository2.getOne(tripId);
 		Cab cab =bookedTrip.getCab();
 		cab.setAvailable(true);
-		bookedTrip.setTripStatus(TripStatus.CANCELED);
+		bookedTrip.setStatus(TripStatus.CANCELED);
 		cabRepository2.save(cab);
 		tripBookingRepository2.save(bookedTrip);
 
@@ -100,7 +100,7 @@ public class CustomerServiceImpl implements CustomerService {
 		TripBooking bookedTrip = tripBookingRepository2.getOne(tripId);
 		Cab cab =bookedTrip.getCab();
 		cab.setAvailable(true);
-		bookedTrip.setTripStatus(TripStatus.COMPLETED);
+		bookedTrip.setStatus(TripStatus.COMPLETED);
 		cabRepository2.save(cab);
 		tripBookingRepository2.save(bookedTrip);
 
