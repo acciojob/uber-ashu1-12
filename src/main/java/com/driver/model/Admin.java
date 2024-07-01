@@ -13,7 +13,7 @@ public class Admin{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer adminId;
+	private int adminId;
 	
 	@Column(nullable = false, unique = true)
 	private String userName;
@@ -42,10 +42,10 @@ public class Admin{
 	}
 	
 	
-	public Integer getAdminId() {
+	public int getAdminId() {
 		return adminId;
 	}
-	public void setAdminId(Integer adminId) {
+	public void setAdminId(int adminId) {
 		this.adminId = adminId;
 	}
 	public String getUserName() {
