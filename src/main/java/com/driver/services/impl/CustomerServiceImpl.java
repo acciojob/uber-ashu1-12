@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.driver.model.Admin;
 import com.driver.model.Cab;
 import com.driver.model.Customer;
 import com.driver.model.Driver;
@@ -18,6 +19,7 @@ import com.driver.model.TripStatus;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -56,7 +58,10 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Driver> driverList=driverRepository2.findAll();
 		driverList.sort(Comparator.comparing(Driver::getDriverId));
 		Customer customer = customerRepository2.getOne(customerId);
-		
+		Optional<Customer> optionCustomer = customerRepository2.findById(customerId);
+		if(optionCustomer.isEmpty()) {
+			return null;
+		}
 		for(Driver driver:driverList) {
 			Cab cab = cabRepository2.findByDriver(driver);
 			if(cab.getAvailable()) {

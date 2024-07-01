@@ -39,9 +39,9 @@ public class AdminServiceImpl implements AdminService {
 		if(optionAdmin.isEmpty()) {
 			return optionAdmin.get();
 		}
-		System.out.println("___________________________________________");	
-		System.out.println(optionAdmin.get());	
-		System.out.println("___________________________________________");	
+//		System.out.println("___________________________________________");	
+//		System.out.println(optionAdmin.get());	
+//		System.out.println("___________________________________________");	
 		Admin admin = optionAdmin.get();
 		admin.setPassword(password);
 		return adminRepository1.save(admin);
