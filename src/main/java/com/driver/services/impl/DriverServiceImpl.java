@@ -17,12 +17,17 @@ public class DriverServiceImpl implements DriverService {
 
 	@Autowired
 	CabRepository cabRepository3;
+	
+	int count=1;
 
 	@Override
 	public void register(String mobile, String password){
 		//Save a driver in the database having given details and a cab with ratePerKm as 10 and availability as True by default.
 		Driver driver=new Driver(mobile, password);
+		driver.setDriverId(count);
 		Cab cab = new Cab(10, true);
+		cab.setId(count);
+		count++;
 		driver.setCab(cab);
 		cab.setDriver(driver);
 		

@@ -21,6 +21,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -35,6 +38,9 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	CabRepository cabRepository2;
+	
+	
+	int tripId=1;
 
 	@Override
 	public void register(Customer customer) {
@@ -58,26 +64,24 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Driver> driverList=driverRepository2.findAll();
 		driverList.sort(Comparator.comparing(Driver::getDriverId));
 		Customer customer = customerRepository2.getOne(customerId);
-		Optional<Customer> optionCustomer = customerRepository2.findById(customerId);
-		if(optionCustomer.isEmpty()) {
-			return null;
-		}
+//		Optional<Customer> optionCustomer = customerRepository2.findById(customerId);
+//		if(optionCustomer.isEmpty()) {
+//			return null;
+//		}
 		for(Driver driver:driverList) {
-			Optional<Cab> optionCab = cabRepository2.findById(customerId);
-			if(optionCab.isEmpty()) {
-				return null;
-			}
-			Cab cab = optionCab.get();
+			 Cab cab = cabRepository2.findByDriver(driver);		
 			if(cab.getAvailable()) {
 				cab.setAvailable(false);
 				cabRepository2.save(cab);
+				
 				TripBooking trip = new TripBooking(fromLocation, toLocation,distanceInKm);
 				trip.setStatus(TripStatus.CONFIRMED);
 				trip.setCustomer(customer);
 				trip.setCab(cab);
+				//trip.setTripBookingId(tripId++);
+				trip.setDriver(driver);
 				trip.setBill(cab.getPerKmRate()*trip.getDistanceInKm());
 				
-
 				List<TripBooking> bookings=customer.getBookings();
 				bookings.add(trip);
 				customer.setBookings(bookings);
